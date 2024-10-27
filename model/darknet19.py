@@ -158,7 +158,7 @@ class darknet19(torch.nn.Module):
                                           bias=True)
         self.avg_pool = torch.nn.AdaptiveAvgPool2d(1)
 
-        # module 초기화
+        # module
         self.initialize_weights()
 
 

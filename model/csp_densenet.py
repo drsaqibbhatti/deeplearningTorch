@@ -10,7 +10,7 @@ class csp_densenet(torch.nn.Module):
         super(csp_densenet, self).__init__()
 
         self.class_num = class_num
-        self.block_config = block_config                ## filter크기 배열
+        self.block_config = block_config                ## filter
         self.growth_rate = growth_rate
         self.expansion_rate = expansion_rate
 
@@ -85,11 +85,11 @@ class csp_densenet(torch.nn.Module):
                                                         torch.nn.Linear(inner_channels,self.class_num),
                                                         torch.nn.Softmax(dim=1))
 
-        # module 초기화
+        # module 
         for m in self.modules():
             if isinstance(m, torch.nn.Conv2d):
                 torch.nn.init.xavier_uniform_(m.weight)
-            elif isinstance(m, torch.nn.BatchNorm2d):  # shifting param이랑 scaling param 초기화(?)
+            elif isinstance(m, torch.nn.BatchNorm2d):  # shifting param - scaling param (?)
                 m.weight.data.fill_(1)  #
                 m.bias.data.zero_()
 
